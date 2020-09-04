@@ -1,0 +1,53 @@
+.fix-x-bottom{
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.fix-x-top{
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
+.fix-x-left{
+  padding-left: constant(safe-area-inset-left);
+  padding-left: env(safe-area-inset-left);
+}
+
+.flex-row
+  display flex;flex-direction row;align-items center
+
+.flex-col
+  display flex;flex-direction column;align-items center
+
+.fixed-bottom{
+  position fixed;bottom 0;width 100vw;z-index 333;background #fff;
+}
+
+.single-ell
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+
+.mult-ell
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+.md-toast-content-nine
+  max-width 80%!important
+.md-toast-text-nine
+  word-break break-all;max-width 260px;white-space unset!important;text-overflow unset!important;overflow unset!important
+.md-dialog
+  .md-dialog-title
+    height 25px;line-height 25px;font-size 18px;font-weight 500;color #030303;margin-bottom 12px!important;
+  .md-dialog-text
+    line-height 21px;font-size 15px;font-weight 400;color: text-6;text-align left;
+  .md-dialog-btn:first-child
+    color text-color-3;font-size 18px;font-weight 400;
+  .md-dialog-btn:last-child
+    color #FFC602;font-size 18px;font-weight 400;
+@media (orientation: landscape)
+  .md-dialog
+    .md-dialog-content
+      transform scale(0.7)

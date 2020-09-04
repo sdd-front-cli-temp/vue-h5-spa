@@ -4,6 +4,17 @@ import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
+const originalPush = VueRouter.prototype.push;
+const originalReplace = VueRouter.prototype.replace;
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject);
+  return originalPush.call(this, location).catch((err) => err);
+};
+VueRouter.prototype.replace = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject);
+  return originalReplace.call(this, location).catch((err) => err);
+};
+
 const routes = [
   {
     path: '/',
@@ -13,11 +24,13 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
+  {
+    path: '/about1',
+    name: 'About1',
+    component: () => import(/* webpackChunkName: "about" */ '../views/About1.vue'),
+  }
 ];
 
 const router = new VueRouter({
