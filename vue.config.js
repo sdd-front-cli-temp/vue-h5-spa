@@ -73,25 +73,23 @@ module.exports = {
     // 分割代码
     config.optimization.splitChunks({
       cacheGroups: {
-        vendors: {
-          name: 'chunk-vendors',
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          chunks: 'initial',
-          reuseExistingChunk: true
-        },
-        common: {
-          name: 'chunk-common',
+        commons: {
+          chunks: 'all',
           minChunks: 2,
-          priority: -20,
-          chunks: 'initial',
-          reuseExistingChunk: true
+          name: 'commons',
+          maxInitialRequests: 5
         },
         vueBase: {
-          test: (module) => /vue|vuex|vue-router/.test(module.context),
-          chunks: 'initial',
+          test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
+          chunks: 'all',
           name: 'vueBase',
           priority: 10,
+          reuseExistingChunk: true
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/](mand-mobile|axios)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
         }
       }
     });
