@@ -6,5 +6,11 @@ module.exports = {
         'es.symbol'
       ]
     }]
+  ],
+  plugins: [
+    ['import', {
+      libraryName: 'mand-mobile',
+      libraryDirectory: 'lib'
+    }]
   ]
 };

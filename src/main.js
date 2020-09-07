@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import '@/styles/stylu/base.styl';
 import { noZoomIn, addVHPro, batchImportGlobalCom } from '@/libs/util';
+import '_p/ui';
 import App from './App.vue';
 import router from './router';
 import store from './store';
