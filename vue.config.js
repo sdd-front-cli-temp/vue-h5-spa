@@ -1,6 +1,7 @@
 const path = require('path');
 const config = require('./src/config');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const resolve = (dir) => path.join(__dirname, dir);
 const isPro = process.env.NODE_ENV === 'production';
@@ -63,6 +64,7 @@ module.exports = {
       .set('_p', resolve('src/plugins'));
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach((type) => addStyleResource(config.module.rule('stylus').oneOf(type)));
+    if (!isPro) return;
     // 修改html-webpack-plugin,注入到body
     config.plugin('html').tap((args) => {
       const ret = (args || []).map((item) => ({ ...item, inject: 'body' }));
@@ -93,6 +95,14 @@ module.exports = {
         }
       }
     });
+    // gzip support
+    config.plugin('compressGzip').use(CompressionPlugin, [{
+      algorithm: 'gzip',
+      test: /\.(js|css)$/, // 匹配文件名
+      threshold: 10240, // 对超过10k的数据压缩
+      deleteOriginalAssets: false, // 不删除源文件
+      minRatio: 0.8 // 压缩比
+    }]);
     // webpack打包分析
     config.plugin('bundleAnalyzer').use(BundleAnalyzerPlugin, []);
   },
