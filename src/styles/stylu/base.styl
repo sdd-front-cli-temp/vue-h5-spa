@@ -34,20 +34,34 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 
-.md-toast-content-nine
-  max-width 80%!important
-.md-toast-text-nine
-  word-break break-all;max-width 260px;white-space unset!important;text-overflow unset!important;overflow unset!important
-.md-dialog
-  .md-dialog-title
-    height 25px;line-height 25px;font-size 18px;font-weight 500;color #030303;margin-bottom 12px!important;
-  .md-dialog-text
-    line-height 21px;font-size 15px;font-weight 400;color: text-6;text-align left;
-  .md-dialog-btn:first-child
-    color text-color-3;font-size 18px;font-weight 400;
-  .md-dialog-btn:last-child
-    color #FFC602;font-size 18px;font-weight 400;
-@media (orientation: landscape)
-  .md-dialog
-    .md-dialog-content
-      transform scale(0.7)
+html,body{
+  width:100%;
+  height:100%;
+}
+
+@media (min-width: 640px){
+  html>body{
+    max-width:640px;
+    margin:0 auto;
+    position:relative;
+  }
+}
+
+// mand-ui样式修改
+//.md-toast-content-nine
+//  max-width 80%!important
+//.md-toast-text-nine
+//  word-break break-all;max-width 260px;white-space unset!important;text-overflow unset!important;overflow unset!important
+//.md-dialog
+//  .md-dialog-title
+//    height 25px;line-height 25px;font-size 18px;font-weight 500;color #030303;margin-bottom 12px!important;
+//  .md-dialog-text
+//    line-height 21px;font-size 15px;font-weight 400;color: text-6;text-align left;
+//  .md-dialog-btn:first-child
+//    color text-color-3;font-size 18px;font-weight 400;
+//  .md-dialog-btn:last-child
+//    color #FFC602;font-size 18px;font-weight 400;
+//@media (orientation: landscape)
+//  .md-dialog
+//    .md-dialog-content
+//      transform scale(0.7)
