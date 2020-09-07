@@ -3,7 +3,6 @@ import { toWxLogin, toLogin } from '@/libs/util';
 import store from '@/store';
 import Toast from '@/components/toast';
 import JsBridge from '@/libs/jsBridge';
-// import { Spin } from 'iview'
 const addErrorLog = () => {
   // const { statusText, status, request: { responseURL } } = errorInfo;
   // const info = {
@@ -23,12 +22,12 @@ class HttpRequest {
 
   getInsideConfig() {
     const { user, app } = store.state;
-    const { isCaptainApp, params } = app.browserType;
+    const { isNativeApp, params } = app.browserType;
     const config = {
       baseURL: this.baseUrl,
       headers: {
         authorization: user.token,
-        isCaptainApp: ~~isCaptainApp,
+        isNativeApp: ~~isNativeApp,
         clientType: (params && params.plat) || 'h5',
         serverVersion: (params && params.appV) || '1.0.0'
       }
@@ -38,18 +37,14 @@ class HttpRequest {
 
   destroy(url) {
     delete this.queue[url];
-    if (!Object.keys(this.queue).length) {
-      // Spin.hide()
-    }
+    // if (!Object.keys(this.queue).length) {}
   }
 
   interceptors(instance, url) {
     // 请求拦截
     instance.interceptors.request.use((config) => {
       // 添加全局的loading...
-      if (!Object.keys(this.queue).length) {
-        // Spin.show() // 不建议开启，因为界面不友好
-      }
+      // if (!Object.keys(this.queue).length) {}
       this.queue[url] = true;
       return config;
     }, (error) => Promise.reject(error));
@@ -68,7 +63,7 @@ class HttpRequest {
       if ([408, 409, 444].indexOf(apiCode) !== -1) { // token过期登录流程
         const bType = store.state.app.browserType;
         const blackUrlPath = store.state.app.blackUrlPath;
-        if (bType.isCaptainApp) {
+        if (bType.isNativeApp) {
           JsBridge('callNativeLogin', 'callNativeLogin');
         } else {
           store.dispatch('handleLogOut');

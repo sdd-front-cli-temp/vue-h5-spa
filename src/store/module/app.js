@@ -3,7 +3,7 @@ import BrowserType from '@/libs/browserType';
 export default {
   state: {
     browserType: {
-      isCaptainApp: false,
+      isNativeApp: false,
       isWx: false,
       isAndroid: false,
       isIos: true,
@@ -18,7 +18,7 @@ export default {
       const { shell, system, params } = bt;
       state.browserType = {
         ...state.browserType,
-        isCaptainApp: shell === 'captainApp',
+        isNativeApp: shell === 'captainApp',
         isWx: shell === 'wechat',
         isAndroid: system === 'android',
         isIos: system === 'ios',

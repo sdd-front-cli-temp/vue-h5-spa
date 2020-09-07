@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { setTitle } from '@/libs/util';
+import LoadingBar from '_c/loadingBar';
+import store from '@/store';
 import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
@@ -37,6 +40,30 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  LoadingBar.start();
+  const { token } = to.query;
+  const bType = store.state.app.browserType;
+  if (token && !bType.isWx) { // 有token的时候，查询用户信息
+    next();
+    // store
+    //   .dispatch('getLoginUser', { token })
+    //   .then(() => {
+    //     next();
+    //   }).catch(() => {
+    //     next();
+    //   });
+  } else {
+    next();
+  }
+});
+
+router.afterEach((to) => {
+  LoadingBar.finish();
+  setTitle(to, router.app);
+  window.scrollTo(0, 0);
 });
 
 export default router;
