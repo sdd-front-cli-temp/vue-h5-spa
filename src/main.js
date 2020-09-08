@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import '@/styles/stylu/base.styl';
+import '@/styles/css/reset.css';
 import { noZoomIn, addVHPro, batchImportGlobalCom } from '@/libs/util';
 import '_p/ui';
 import '_p/others';
