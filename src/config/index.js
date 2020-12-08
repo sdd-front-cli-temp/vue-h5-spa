@@ -20,7 +20,7 @@
   // can return a function as the exported value.
   // eslint-disable-next-line implicit-arrow-linebreak
   ({
-    title: '七彩熊',
+    title: '',
     /**
      * @description token在Cookie中存储的天数，默认1天
      */
@@ -29,13 +29,13 @@
      * @description api请求基础路径
      */
     baseUrl: {
-      dev: 'https://devapi.qicaibear.com/'
+      dev: ''
     },
     ossConfig: {
-      publicPath: 'https://hellokid-static.oss-cn-hangzhou.aliyuncs.com',
-      accessKeyId: 'LTAI4FjJirUdKjKPxpEjougb',
-      accessKeySecret: 'Ygw7toio2dEZloGgfCoEHaWgexdEtb',
-      bucket: 'hellokid-static',
-      preFlag: '/qcbear_h5/'
+      publicPath: '',
+      accessKeyId: '',
+      accessKeySecret: '',
+      bucket: '',
+      preFlag: ''
     }
   })));
